@@ -29,7 +29,6 @@ void End() {
 	glEnable(GL_DEPTH_TEST);
 }
 
-
 void Esp::Draw() {
 	Begin();
 
@@ -54,6 +53,12 @@ void Esp::Draw() {
 			else glColor3f(255, 0, 0); // RED
 
 			DrawRect(headPos.x - width / 2, headPos.y, footPos.x + width, footPos.y);
+
+			if (p->health <= 15) glColor3f(255, 0, 0);
+			else if (p->health <= 50) glColor3f(255, 196, 0);
+			else glColor3f(0, 255, 0);
+
+			DrawRect(headPos.x - width / 2, footPos.y + 1, footPos.x + (width / 100 * p->health), footPos.y + 1);
 		}
 	}
 	End();
