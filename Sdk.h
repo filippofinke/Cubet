@@ -1,5 +1,8 @@
 #pragma once
 #include <cstdint>
+#include <Windows.h>
+
+typedef unsigned char uchar;
 
 struct Vector2 {
 	float x, y;
@@ -37,6 +40,39 @@ public:
 	char name[16]; //0x0225
 	char pad_0235[247]; //0x0235
 	int32_t team; //0x032C
+};
+
+class Entity
+{
+public:
+	short x; //0x0000 
+	short y; //0x0002 
+	short z; //0x0004 
+	short attr1; //0x0006 
+	BYTE type; //0x0008 
+	BYTE attr2; //0x0009 
+	BYTE attr3; //0x000A 
+	BYTE attr4; //0x000B 
+	BYTE spawned; //0x000C 
+	char pad_0x000D[0x3]; //0x000D
+	int lastmillis; //0x0010 
+};
+
+
+class EntityList
+{
+public:
+
+	class List
+	{
+	public:
+		Entity entities[1024];
+	};
+
+	List* list; //0x0000 
+	int32_t max; //0x0004 
+	int32_t count; //0x0008 
+
 };
 
 struct Screen {

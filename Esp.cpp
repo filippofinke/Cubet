@@ -31,6 +31,19 @@ void End() {
 
 void Esp::Draw() {
 	Begin();
+	EntityList* entityList = (EntityList*)OFFSET_ENTITY_LIST;
+	for (int i = 0; i < entityList->count; i++) {
+		Entity entity = entityList->list->entities[i];
+		if (entity.type >= 3 && entity.type <= 9) {
+			Vector2 point;
+			Vector3 pos{ (float)entity.x, (float)entity.y, (float)entity.z };
+			if (Utils::WorldToScreen(pos, point)) {
+				if (entity.spawned) 	glColor3f(255, 255, 255);
+				else glColor3f(255, 0, 0);
+				DrawRect(point.x - 1, point.y, point.x + 1, point.y);
+			}
+		}
+	}
 
 	Player* local = *(Player**)(Cubet::m_GameBase + OFFSET_LOCAL_PLAYER);
 
