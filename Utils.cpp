@@ -2,6 +2,27 @@
 #include "Offsets.h"
 #include "Sdk.h"
 
+bool Utils::IsVisible(Vector3 from, Vector3 to) {
+
+	__asm
+	{
+		push to.z;
+		push to.y;
+		push to.x;
+
+		push from.z;
+		push from.y;
+		push from.x;
+
+		xor cl, cl;  
+		xor eax, eax;
+		mov ebx, OFFSET_TRACELINE;
+		call ebx;
+		add esp, 0x18;
+	}
+	
+}
+
 bool Utils::WorldToScreen(Vector3 pos, Vector2& screen) {
 
 	Screen* size = (Screen*)OFFSET_SCREENSIZE;
@@ -25,5 +46,4 @@ bool Utils::WorldToScreen(Vector3 pos, Vector2& screen) {
 	screen.x = (size->width / 2 * NDC.x) + (NDC.x + size->width / 2);
 	screen.y = -(size->height / 2 * NDC.y) + (NDC.y + size->height / 2);
 	return true;
-
 }
