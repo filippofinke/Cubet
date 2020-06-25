@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <Windows.h>
+#include <math.h>
 
 typedef unsigned char uchar;
 
@@ -9,6 +10,12 @@ struct Vector2 {
 };
 
 struct Vector3 {
+	float Distance(Vector3 to) {
+		float dx = x - to.x;
+		float dy = y - to.y;
+		float dz = z - to.z;
+		return sqrtf(dx * dx + dy * dy + dz * dz);
+	}
 	float x, y, z;
 };
 
@@ -96,4 +103,10 @@ public:
 struct Screen {
 	int32_t width;
 	int32_t height;
+};
+
+struct TraceResult
+{
+	Vector3 end;
+	bool collided;
 };
