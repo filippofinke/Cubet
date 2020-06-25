@@ -3,8 +3,9 @@
 class Cubet
 {
 public:
-	static HMODULE m_Module;
-	static uintptr_t m_GameBase;
+	static HMODULE Module;
+	static uintptr_t GameBase;
+	static bool Esp;
 	static DWORD APIENTRY Loop(LPVOID lparam);
 	static void Start(HMODULE module);
 	static void Stop();

@@ -4,16 +4,17 @@
 #include "Hooks.h"
 
 #pragma region Static variables
-HMODULE Cubet::m_Module = NULL;
-uintptr_t Cubet::m_GameBase = NULL;
+HMODULE Cubet::Module = NULL;
+uintptr_t Cubet::GameBase = NULL;
+bool Cubet::Esp = false;
 #pragma endregion
 
 #pragma region Static methods
 void Cubet::Start(HMODULE module)
 {
 	LOG_DEBUG("%s", __FUNCTION__);
-	m_Module = module;
-	m_GameBase = (uintptr_t)GetModuleHandleA(NULL);
+	Module = module;
+	GameBase = (uintptr_t)GetModuleHandleA(NULL);
 
 	bool hook = Hooks::Hook_SDL_GL_SwapBuffers();
 	if (!hook) {
@@ -31,13 +32,19 @@ void Cubet::Start(HMODULE module)
 DWORD APIENTRY Cubet::Loop(LPVOID lparam)
 {
 	LOG_DEBUG("%s", __FUNCTION__);
-
+	while (true) {
+		if (GetAsyncKeyState(VK_NUMPAD0) & 1) {
+			Esp = !Esp;
+			LOG_DEBUG("Esp: %s", (Esp) ? "Enabled" : "Disabled");
+		}
+		Sleep(10);
+	}
 	return 0;
 }
 
 void Cubet::Stop()
 {
 	LOG_DEBUG("%s", __FUNCTION__);
-	FreeLibraryAndExitThread(m_Module, 0);
+	FreeLibraryAndExitThread(Module, 0);
 }
 #pragma endregion

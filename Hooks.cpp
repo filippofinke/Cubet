@@ -2,11 +2,12 @@
 #include "Offsets.h"
 #include "Logger.h"
 #include "Esp.h"
+#include "Cubet.h"
 
 SDL_GL_SwapBuffers Hooks::m_SDL_GL_SwapBuffers = nullptr;
 
 void Hooks::Hooked_SDL_GL_SwapBuffers() {
-	Esp::Draw();
+	if(Cubet::Esp) Esp::Draw();
 	m_SDL_GL_SwapBuffers();
 }
 
