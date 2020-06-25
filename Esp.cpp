@@ -34,7 +34,7 @@ void Esp::Draw() {
 	EntityList* entityList = (EntityList*)OFFSET_ENTITY_LIST;
 	for (int i = 0; i < entityList->count; i++) {
 		Entity entity = entityList->list->entities[i];
-		if (entity.type >= 3 && entity.type <= 9) {
+		if (entity.type >= Entity::I_CLIPS && entity.type <= Entity::I_AKIMBO) {
 			Vector2 point;
 			Vector3 pos{ (float)entity.x, (float)entity.y, (float)entity.z };
 			if (Utils::WorldToScreen(pos, point)) {
