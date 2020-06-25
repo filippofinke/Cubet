@@ -34,21 +34,19 @@ void Esp::Draw() {
 	EntityList* entityList = (EntityList*)OFFSET_ENTITY_LIST;
 	for (int i = 0; i < entityList->count; i++) {
 		Entity entity = entityList->list->entities[i];
-		if (entity.type >= Entity::I_CLIPS && entity.type <= Entity::I_AKIMBO) {
+		if (entity.spawned && entity.type >= Entity::I_CLIPS && entity.type <= Entity::I_AKIMBO) {
 			Vector2 point;
 			Vector3 pos{ (float)entity.x, (float)entity.y, (float)entity.z };
 			if (Utils::WorldToScreen(pos, point)) {
-				if (entity.spawned) 	glColor3f(255, 255, 255);
-				else glColor3f(255, 0, 0);
 				DrawRect(point.x - 1, point.y, point.x + 1, point.y);
 			}
 		}
 	}
 
-	Player* local = *(Player**)(Cubet::m_GameBase + OFFSET_LOCAL_PLAYER);
+	Player* local = *(Player**)(Cubet::GameBase + OFFSET_LOCAL_PLAYER);
 
-	uintptr_t* players = *(uintptr_t**)(Cubet::m_GameBase + OFFSET_PLAYER_LIST);
-	int maxPlayers = *(int*)(Cubet::m_GameBase + OFFSET_MAX_PLAYERS);
+	uintptr_t* players = *(uintptr_t**)(Cubet::GameBase + OFFSET_PLAYER_LIST);
+	int maxPlayers = *(int*)(Cubet::GameBase + OFFSET_MAX_PLAYERS);
 
 	const char* gameMode = Gamemode[(*(int*)OFFSET_GAME_MODE) + 1];
 	bool teamMode = strstr(gameMode, "team") != nullptr;
