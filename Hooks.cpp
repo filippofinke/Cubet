@@ -3,11 +3,13 @@
 #include "Logger.h"
 #include "Esp.h"
 #include "Cubet.h"
+#include "Aimbot.h"
 
 SDL_GL_SwapBuffers Hooks::m_SDL_GL_SwapBuffers = nullptr;
 
 void Hooks::Hooked_SDL_GL_SwapBuffers() {
 	if(Cubet::Esp) Esp::Draw();
+	if (Cubet::Aimbot) Aimbot::Main();
 	m_SDL_GL_SwapBuffers();
 }
 

@@ -7,6 +7,7 @@
 HMODULE Cubet::Module = NULL;
 uintptr_t Cubet::GameBase = NULL;
 bool Cubet::Esp = false;
+bool Cubet::Aimbot = false;
 #pragma endregion
 
 #pragma region Static methods
@@ -36,6 +37,9 @@ DWORD APIENTRY Cubet::Loop(LPVOID lparam)
 		if (GetAsyncKeyState(VK_NUMPAD0) & 1) {
 			Esp = !Esp;
 			LOG_DEBUG("Esp: %s", (Esp) ? "Enabled" : "Disabled");
+		} else if (GetAsyncKeyState(VK_NUMPAD1) & 1) {
+			Aimbot = !Aimbot;
+			LOG_DEBUG("Aimbot: %s", (Aimbot) ? "Enabled" : "Disabled");
 		}
 		Sleep(10);
 	}
