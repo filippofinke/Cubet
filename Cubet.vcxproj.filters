@@ -33,6 +33,9 @@
     <ClCompile Include="Esp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Aimbot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cubet.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Esp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Aimbot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

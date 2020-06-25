@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Aimbot.cpp" />
     <ClCompile Include="Cubet.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Esp.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Aimbot.h" />
     <ClInclude Include="Cubet.h" />
     <ClInclude Include="Esp.h" />
     <ClInclude Include="Hooks.h" />
